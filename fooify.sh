@@ -11,6 +11,20 @@ gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 cp repos/tor.list /etc/apt/sources.list.d/
 apt-get update
 apt-get install -y git vim vlc chromium-browser gimp keepassx clang virtualbox yubioath-desktop openvpn network-manager-openvpn-gnome tor docker-engine nodejs wireshark htop iotop anthy ibus-anthy deb.torproject.org-keyring openjdk-8-jdk bpython clamav chkrootkit diffuse filezilla hexedit iftop jq mercurial mongodb-clients mysql-client nfs-common ngrep qrencode traceroute tree unrar whois 
+
+mkdir -p ~/bin
+if [ -z $(which subl) ]; then
+    if [ ! -f sublime_text_3_build_3126_x64.tar.bz2 ]; then
+        wget https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2
+    fi
+    tar xvf sublime_text_3_build_3126_x64.tar.bz2 -C ~
+    ln -s $(readlink -f sublime_text_3/sublime_text) ~/bin/subl
+fi
+if [ -z $(which lein) ]; then
+  wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein
+  chmod u+x ~/bin/lein
+fi
+
 if [ ! -f MOK.der ]; then
   openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=Vbox signing key/"
 fi
@@ -39,10 +53,12 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys email "<Super>m"
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "<Super>e"
 gsettings set org.gnome.settings-daemon.plugins.media-keys media "<Super>v"
 gsettings set org.gnome.settings-daemon.plugins.media-keys www "<Super>w"
+gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 
 cp 50-no-guest.conf /etc/lightdm/lightdm.conf.d/50-no-guest.conf
 
-
+groupadd docker
+usermod -aG docker caligin
 
 # google chrome by hand, there's some shit licence to accept and I dont't want to bother
 # and wtf is wrong with erlang
