@@ -1,0 +1,21 @@
+[user]
+    name = Tsukihara Caligin
+    email = caligin@anima.tech
+	signingkey = 0x7AD2E918B3D5FFB7
+[color]
+    ui = auto
+    decorate = short
+[push]
+	default = simple
+[alias]
+    ci = commit
+    co = checkout 
+    st = status
+[core]
+	editor = vim
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[gpg]
+    program = gpg2
