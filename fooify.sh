@@ -1,4 +1,7 @@
-add-apt-repository -y ppa:yubico/stable
+set -e
+sudo apt-get update
+sudo apt-get install -y curl
+sudo add-apt-repository -y ppa:yubico/stable
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -8,18 +11,15 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 bash install-nvm-v0.33.8.sh
-. .bashrc
-nvm install node
-nvm use node
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
-cp repos/tor.list /etc/apt/sources.list.d/
+sudo cp repos/tor.list /etc/apt/sources.list.d/
 bash install-rvm-master-01032018.sh
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 sudo add-apt-repository ppa:phoerious/keepassxc
-apt-get update
-apt-get install -y \
+sudo apt-get update
+sudo apt-get install -y \
   anthy \
   bpython \
   chkrootkit \
@@ -41,6 +41,7 @@ apt-get install -y \
   jq \
   keepassxc \
   mercurial \
+  mokutil \
   mongodb-clients \
   mysql-client \
   network-manager-openvpn-gnome \
@@ -63,8 +64,8 @@ apt-get install -y \
   whois \
   wireshark \
   yubioath-desktop
-apt-get update
-apt-get upgrade -y
+sudo apt-get update
+sudo apt-get upgrade -y
 
 mkdir -p ~/bin
 if [ -z $(which lein) ]; then
