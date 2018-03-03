@@ -10,11 +10,9 @@ sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
-bash install-nvm-v0.33.8.sh
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 sudo cp repos/tor.list /etc/apt/sources.list.d/
-bash install-rvm-master-01032018.sh
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 sudo add-apt-repository ppa:phoerious/keepassxc
@@ -67,6 +65,11 @@ sudo apt-get install -y \
 sudo apt-get update
 sudo apt-get upgrade -y
 
+for f in $(find dotfiles/ -type f); do
+  cp $f ~/
+done
+bash install-nvm-v0.33.8.sh
+bash install-rvm-master-01032018.sh
 mkdir -p ~/bin
 if [ -z $(which lein) ]; then
   wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O ~/bin/lein
@@ -111,9 +114,6 @@ sudo tar -C /usr/local -xzf go1.10.linux-amd64.tar.gz
 curl -L https://yt-dl.org/downloads/latest/youtube-dl -o ~/bin/youtube-dl
 chmod a+rx ~/bin/youtube-dl
 
-for f in $(ls dotfiles); do
-  cp $f ~/
-done
 dconf load /org/gnome/terminal/ < notdotfiles/gnome-terminal-$HOSTNAME
 mkdir -p ~/.gnupg
 chmod 700 ~/.gnupg
@@ -143,8 +143,10 @@ gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 
 cp 50-no-guest.conf /etc/lightdm/lightdm.conf.d/50-no-guest.conf
 
-groupadd docker
-usermod -aG docker caligin
+groups | docker || sudo groupadd docker
+sudo usermod -aG docker caligin
+
+gpg2 --recv-keys 0x7AD2E918B3D5FFB7
 
 # google chrome by hand, there's some shit licence to accept and I dont't want to bother
 # same for android studio and I guess netbeans
