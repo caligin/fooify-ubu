@@ -148,9 +148,8 @@ PS1="\[\e[1m\e[48;5;\$(hostname_color)m\] \[\e[00m\] \
 \[\e[1m\e[38;5;111m\]  ↪  \[\e[00m\]\
 \[\e[1m\e[38;5;$(uid_color)m\]\$ \[\e[00m\]"
 
-
-export PATH="/usr/local/go/bin:$PATH"
 export GOPATH="/home/$USER/go_workspace"
+export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 
 [ -f /home/$USER/.wechall/credentials ] && source /home/$USER/.wechall/credentials
 
