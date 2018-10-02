@@ -53,9 +53,12 @@ sudo apt-get install -y \
   openssh-server \
   openvpn \
   python-pip \
+  python-virtualenv \
   qrencode \
   scdaemon \
   signal-desktop \
+  strongswan \
+  strongswan-plugin-openssl \
   sublime-text \
   tor \
   traceroute \
