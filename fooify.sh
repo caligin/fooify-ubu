@@ -50,6 +50,7 @@ sudo apt-get install -y \
   nfs-common \
   ngrep \
   openjdk-8-jdk \
+  openssh-server \
   openvpn \
   python-pip \
   qrencode \
@@ -127,6 +128,9 @@ cp notdotfiles/gimp-menurc ~/.gimp-2.8/menurc
 mkdir -p ~/.ssh
 cp notdotfiles/ssh-config ~/.ssh/config
 chmod 664 ~/.ssh/config
+
+sudo systemctl disable ssh
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/'
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$(cat bindings/customkeybindings.bindings.keys)"
 for kb in $(ls bindings/*.binding); do
