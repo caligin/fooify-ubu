@@ -84,16 +84,6 @@ if [ -z $(which lein) ]; then
   chmod u+x ~/bin/lein
 fi
 
-mkdir -p ~/keys/moks/
-if [ ! -f ~/keys/moks/MOK.der ]; then
-  openssl req -new -x509 -newkey rsa:2048 -keyout ~/keys/moks/MOK.priv -outform DER -out ~/keys/moks/MOK.der -nodes -days 36500 -subj "/CN=Vbox signing key/"
-fi
-mokutil --import ~/keys/moks/MOK.der
-
-for mod in $(find /lib/modules/$(uname -r)/updates/ -name 'vbox*' -exec bash -c "basename {} |  awk -F . '{ print \$1 }'" \;); do
-  /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ~/keys/moks/MOK.priv ~/keys/moks/MOK.der $(modinfo -n ${mod})
-done
-
 if [ ! -f vagrant_2.0.2_x86_64.deb ]; then
   wget https://releases.hashicorp.com/vagrant/2.0.2/vagrant_2.0.2_x86_64.deb
 fi
