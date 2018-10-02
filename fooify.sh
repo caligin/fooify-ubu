@@ -73,7 +73,7 @@ sudo apt-get upgrade -y
 for f in $(find dotfiles/ -type f); do
   cp $f ~/
 done
-bash install-nvm-v0.33.8.sh
+bash install-nvm-v0.33.11.sh
 bash install-rvm-master-01032018.sh
 mkdir -p ~/bin
 if [ -z $(which lein) ]; then
