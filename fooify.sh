@@ -154,7 +154,7 @@ cp 50-no-guest.conf /etc/lightdm/lightdm.conf.d/50-no-guest.conf
 groups | docker || sudo groupadd docker
 sudo usermod -aG docker caligin
 
-gpg2 --recv-keys 0x7AD2E918B3D5FFB7
+gpg --recv-keys 0x7AD2E918B3D5FFB7
 
 # google chrome by hand, there's some shit licence to accept and I dont't want to bother
 # same for android studio and I guess netbeans
