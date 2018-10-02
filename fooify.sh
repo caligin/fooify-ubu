@@ -1,4 +1,8 @@
 set -e
+if [ $(whoami) == "root" ]; then
+  echo "this script needs to run as non-sudo, sudo permissions will be asked on an operation-by-operation basis"
+  exit 1
+fi
 sudo apt-get update
 sudo apt-get install -y curl
 sudo add-apt-repository -y ppa:yubico/stable
