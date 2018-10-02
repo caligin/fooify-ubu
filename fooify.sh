@@ -153,6 +153,7 @@ cp 50-no-guest.conf /etc/lightdm/lightdm.conf.d/50-no-guest.conf
 
 groups | docker || sudo groupadd docker
 sudo usermod -aG docker caligin
+sudo usermod -aG wireshark caligin
 
 gpg --recv-keys 0x7AD2E918B3D5FFB7
 
