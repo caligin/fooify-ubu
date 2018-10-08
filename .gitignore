@@ -1,3 +1,8 @@
 *.priv
 *.der
 *.deb
+awscli-bundle/
+awscli-bundle.zip
+rvm-installer
+rvm-installer.asc
+go*.linux-amd64.tar.gz

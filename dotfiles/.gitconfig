@@ -18,4 +18,4 @@
 	insteadOf = https://github.com/
 
 [gpg]
-    program = gpg2
+    program = gpg

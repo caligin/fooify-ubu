@@ -58,7 +58,6 @@ sudo apt-get install -y \
   scdaemon \
   signal-desktop \
   strongswan \
-  strongswan-plugin-openssl \
   sublime-text \
   tor \
   traceroute \
@@ -76,7 +75,7 @@ sudo apt-get upgrade -y
 for f in $(find dotfiles/ -type f); do
   cp $f ~/
 done
-bash install-nvm-v0.33.11.sh
+#bash install-nvm-v0.33.11.sh
 bash install-rvm-master-01032018.sh
 mkdir -p ~/bin
 if [ -z $(which lein) ]; then
@@ -87,7 +86,7 @@ fi
 if [ ! -f vagrant_2.0.2_x86_64.deb ]; then
   wget https://releases.hashicorp.com/vagrant/2.0.2/vagrant_2.0.2_x86_64.deb
 fi
-dpkg -i vagrant_2.0.2_x86_64.deb
+sudo dpkg -i vagrant_2.0.2_x86_64.deb
 
 if [ ! -f awscli-bundle.zip ]; then
   curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
@@ -96,7 +95,7 @@ unzip awscli-bundle.zip
 ./awscli-bundle/install -i ~/awscli -b ~/bin/aws
 
 curl -s https://get.sdkman.io | bash
-sdk install kotlin
+#sdk install kotlin
 
 curl https://sh.rustup.rs -sSf | sh
 
@@ -123,7 +122,7 @@ cp notdotfiles/ssh-config ~/.ssh/config
 chmod 664 ~/.ssh/config
 
 sudo systemctl disable ssh
-sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/'
+sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$(cat bindings/customkeybindings.bindings.keys)"
 for kb in $(ls bindings/*.binding); do
@@ -142,9 +141,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys media "<Super>v"
 gsettings set org.gnome.settings-daemon.plugins.media-keys www "<Super>w"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 
-cp 50-no-guest.conf /etc/lightdm/lightdm.conf.d/50-no-guest.conf
-
-groups | docker || sudo groupadd docker
+cut -d: -f1 /etc/group | grep docker || sudo groupadd docker
 sudo usermod -aG docker caligin
 sudo usermod -aG wireshark caligin
 
