@@ -140,6 +140,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys home "<Super>e"
 gsettings set org.gnome.settings-daemon.plugins.media-keys media "<Super>v"
 gsettings set org.gnome.settings-daemon.plugins.media-keys www "<Super>w"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
+gsettings set org.freedesktop.ibus.panel.emoji hotkey '[]' # default ctrl-shift-e clashes with IDEs and my custom GIMP "export as" shotcut
 
 cut -d: -f1 /etc/group | grep docker || sudo groupadd docker
 sudo usermod -aG docker caligin
