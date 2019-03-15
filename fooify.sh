@@ -125,6 +125,10 @@ chmod 664 ~/.ssh/config
 sudo systemctl disable ssh
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 
+# the "new printer" popup can drive you mad when in a shared office space with someone compulsively attachind and detaching their printer to the network
+sudo systemctl stop cups-browsed.service
+sudo systemctl disable cups-browsed.service
+
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$(cat bindings/customkeybindings.bindings.keys)"
 for kb in $(ls bindings/*.binding); do
   name=$(echo -n "$kb" | cut -d '.' -f1 | cut -d '/' -f2 | tr '+' '/')
