@@ -47,6 +47,7 @@ sudo apt-get install -y \
   mongodb-clients \
   mysql-client \
   network-manager-openvpn-gnome \
+  network-manager-vpnc-gnome \
   nfs-common \
   ngrep \
   openjdk-8-jdk \
