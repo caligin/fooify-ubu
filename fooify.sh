@@ -18,7 +18,7 @@ gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 sudo cp repos/tor.list /etc/apt/sources.list.d/
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
-echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee /etc/apt/sources.list.d/signal-xenial.list
 sudo add-apt-repository ppa:phoerious/keepassxc
 sudo apt-get update
 sudo apt-get install -y \
@@ -35,6 +35,7 @@ sudo apt-get install -y \
   gimp \
   git \
   gnome-session-flashback \
+  gnome-tweak-tool \
   hexedit \
   htop \
   ibus-anthy \
@@ -60,6 +61,7 @@ sudo apt-get install -y \
   signal-desktop \
   strongswan \
   sublime-text \
+  thunderbird \
   tor \
   traceroute \
   tree \
@@ -147,6 +149,9 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys www "<Super>w"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 gsettings set org.freedesktop.ibus.panel.emoji hotkey '[]' # default ctrl-shift-e clashes with IDEs and my custom GIMP "export as" shotcut
 gsettings set org.gnome.desktop.session idle-delay 0 # DANGER WARN: this disable the autolock timeout. works for me b/c I'm compulsively paranoid about locking my screen manually but it might not be the case for you!
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Ctrl><Alt>l'
+dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll false # not a mac so we scroll how is natural, that is not what is called natural
+dconf write /org/gnome/desktop/peripherals/touchpad/click-method "'areas'" # again, not a mac. there's 2 buttons on that touchpad, not 1.
 
 cut -d: -f1 /etc/group | grep docker || sudo groupadd docker
 sudo usermod -aG docker caligin
