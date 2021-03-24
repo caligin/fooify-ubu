@@ -1,6 +1,6 @@
 [user]
-    name = Tsukihara Caligin
-    email = caligin@anima.tech
+    name = 0xf00
+    email = foo@anima.tech
 	signingkey = 0x7AD2E918B3D5FFB7
 [color]
     ui = auto
@@ -19,3 +19,5 @@
 
 [gpg]
     program = gpg
+[commit]
+    gpgsign = true
