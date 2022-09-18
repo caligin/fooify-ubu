@@ -11,8 +11,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
-gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | sudo tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
 sudo cp repos/tor.list /etc/apt/sources.list.d/
 
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
@@ -33,7 +32,7 @@ sudo apt install -y \
   gimp \
   git \
   gnome-session-flashback \
-  gnome-tweak-tool \
+  gnome-tweaks \
   htop \
   ibus-anthy \
   iftop \
@@ -56,9 +55,9 @@ sudo apt install -y \
 sudo apt update
 sudo apt upgrade -y
 
-snap refresh firefox
-snap install code --classic
-snap install yubioath-desktop keepassxc
+sudo snap refresh firefox
+sudo snap install code kubectl --classic
+sudo snap install yubioath-desktop keepassxc doctl
 
 sudo rkhunter --propupd
 sudo sed -i s/APT_AUTOGEN="no"/APT_AUTOGEN="yes"/g /etc/default/rkhunter
@@ -75,12 +74,12 @@ bash install-nvm-v0.39.1.sh
 bash install-rvm-master-01032018.sh
 
 git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
-ln -s ~/.tfenv/bin/* /usr/local/bin
-cho 'trust-tfenv: yes' > ~/.tfenv/use-gpgv
+ln -s ~/.tfenv/bin/* ~/bin
+echo 'trust-tfenv: yes' > ~/.tfenv/use-gpgv
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
-./aws/install -i ~/aws-cli -b ~/bin/aws
+./aws/install -i ~/aws-cli -b ~/bin/
 
 curl -s https://get.sdkman.io | bash
 
@@ -128,7 +127,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys media "['<Super>v']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Super>w']"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 gsettings set org.gnome.desktop.session idle-delay 0 # DANGER WARN: this disable the autolock timeout. works for me b/c I'm compulsively paranoid about locking my screen manually but it might not be the case for you!
-gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Ctrl><Alt>l'
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['<Ctrl><Alt>l']"
 dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll false # not a mac so we scroll how is natural, that is not what is called natural
 dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click true
 dconf write /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled true

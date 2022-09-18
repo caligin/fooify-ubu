@@ -14,9 +14,6 @@
 [core]
 	editor = vim
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-
 [gpg]
     program = gpg
 [commit]
