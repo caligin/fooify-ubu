@@ -40,6 +40,8 @@ sudo apt install -y \
   jq \
   nfs-common \
   ngrep \
+  python3 \
+  python3-pip \
   python3-virtualenv \
   rkhunter \
   scdaemon \
