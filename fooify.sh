@@ -57,8 +57,8 @@ sudo apt install -y \
 sudo apt update
 sudo apt upgrade -y
 
-sudo snap refresh firefox
-sudo snap install code kubectl --classic
+sudo snap install code --classic
+sudo snap install kubectl --classic
 sudo snap install yubioath-desktop keepassxc doctl
 
 sudo rkhunter --propupd
