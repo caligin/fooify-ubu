@@ -1,0 +1,18 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "explorer.confirmDragAndDrop": false,
+    "java.semanticHighlighting.enabled": true,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "files.autoSave": "afterDelay",
+    "[java]": {},
+    "explorer.confirmDelete": false,
+    "extensions.ignoreRecommendations": true,
+    "redhat.telemetry.enabled": false,
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "window.zoomLevel": 0
+}

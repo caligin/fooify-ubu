@@ -109,6 +109,10 @@ chmod 700 ~/.ssh
 cp notdotfiles/ssh-config ~/.ssh/config
 chmod 664 ~/.ssh/config
 
+for f in $(ls vscode/); do
+  cp vscode/$f ~/.config/Code/User/
+done
+
 # the "new printer" popup can drive you mad when in a shared office space with someone compulsively attachind and detaching their printer to the network
 sudo systemctl stop cups-browsed.service
 sudo systemctl disable cups-browsed.service
