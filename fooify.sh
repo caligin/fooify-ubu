@@ -41,6 +41,7 @@ sudo apt install -y \
   nfs-common \
   ngrep \
   openresolv \
+  pcscd \
   python3 \
   python3-pip \
   python3-virtualenv \
