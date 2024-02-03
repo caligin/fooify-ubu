@@ -110,6 +110,8 @@ chmod 700 ~/.ssh
 cp notdotfiles/ssh-config ~/.ssh/config
 chmod 664 ~/.ssh/config
 
+mkdir -m700 ~/.config/Code/
+mkdir -m755 ~/.config/Code/User/
 for f in $(ls vscode/); do
   cp vscode/$f ~/.config/Code/User/
 done
