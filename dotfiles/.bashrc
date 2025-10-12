@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -125,7 +125,13 @@ function __hg_ps1 ()
 function __git_ps1 ()
 {
   if [ "$(git rev-parse --show-toplevel 2> /dev/null)" ]; then
-    echo -en "(git:$(git branch | tr '\n' ',' | rev | cut -c 2- | rev | sed 's/,/, /g'))"
+    echo -en "(git:$(git branch | tr '\n' ' ' | rev | cut -c 2- | rev))"
+  fi
+}
+function __aws_ps1 ()
+{
+  if [ "$(env | grep AWS_PROFILE 2> /dev/null)" ]; then
+    echo -en "(aws:${AWS_PROFILE})"
   fi
 }
 
@@ -153,6 +159,7 @@ PS1="\[\e[1m\e[48;5;\$(hostname_color)m\] \[\e[00m\] \
 \[\e[1m\e[38;5;111m\]\w\[\e[00m\]\
 \[\e[1m\e[38;5;118m\] \$(__hg_ps1)\[\e[00m\]\
 \[\e[1m\e[38;5;118m\] \$(__git_ps1)\[\e[00m\]\
+\[\e[1m\e[38;5;11m\] \$(__aws_ps1)\[\e[00m\]\
 \n\
 \[\e[1m\e[48;5;\$(hostname_color)m\] \[\e[00m\]\
 \[\e[1m\e[38;5;111m\]  ↪  \[\e[00m\]\
